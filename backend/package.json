@@ -1,0 +1,31 @@
+{
+  "name": "gen2res-backend",
+  "version": "1.0.0",
+  "description": "Backend for Gen2Res (a Gen-AI based Resume builder).",
+  "keywords": [
+    "gen-ai-resume",
+    "ats-resume",
+    "resume-builder",
+    "resume-generator"
+  ],
+  "homepage": "https://github.com/luckygoswami/gen2res#readme",
+  "bugs": {
+    "url": "https://github.com/luckygoswami/gen2res/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luckygoswami/gen2res.git"
+  },
+  "license": "MIT",
+  "author": "Deepak Goswami",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.0"
+  }
+}
