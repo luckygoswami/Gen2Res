@@ -20,8 +20,9 @@
   "author": "Deepak Goswami",
   "type": "module",
   "imports": {
+    "#src/*": "./src/*",
     "#config/*": "./src/config/*",
-    "#src/*": "./src/*"
+    "#models/*": "./src/models/*"
   },
   "main": "server.js",
   "scripts": {
