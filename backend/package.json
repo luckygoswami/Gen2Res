@@ -19,6 +19,10 @@
   "license": "MIT",
   "author": "Deepak Goswami",
   "type": "module",
+  "imports": {
+    "#config/*": "./src/config/*",
+    "#src/*": "./src/*"
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
