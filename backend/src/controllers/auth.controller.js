@@ -1,10 +1,8 @@
 import userModel from '#models/user.model.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import 'dotenv/config';
 import { tokenBlacklistModel } from '#models/blacklist.model.js';
-
-const { JWT_SECRET } = process.env;
+import { JWT_SECRET } from '#config/variables.js';
 
 /**
  * @name registerUserController
@@ -107,8 +105,8 @@ async function loginUserController(req, res) {
 
 /**
  * @name logoutUserController
- * @description logout user and clear token from cookies
- * @access private
+ * @description clear token cookie and add it to the blacklist
+ * @access public
  */
 async function logoutUserController(req, res) {
   const token = req.cookies.token;
