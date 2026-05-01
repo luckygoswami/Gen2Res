@@ -1,5 +1,6 @@
 import {
   loginUserController,
+  logoutUserController,
   registerUserController,
 } from '#controllers/auth.controller.js';
 import { Router } from 'express';
@@ -19,5 +20,12 @@ authRouter.post('/register', registerUserController);
  * @access public
  */
 authRouter.post('/login', loginUserController);
+
+/**
+ * @route GET /api/auth/logout
+ * @description logout user and clear token from cookies
+ * @access private
+ */
+authRouter.get('/logout', logoutUserController);
 
 export { authRouter };

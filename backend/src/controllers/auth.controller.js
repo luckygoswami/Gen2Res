@@ -2,6 +2,7 @@ import userModel from '#models/user.model.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
+import { tokenBlacklistModel } from '#models/blacklist.model.js';
 
 const { JWT_SECRET } = process.env;
 
@@ -104,4 +105,23 @@ async function loginUserController(req, res) {
   });
 }
 
-export { registerUserController, loginUserController };
+/**
+ * @name logoutUserController
+ * @description logout user and clear token from cookies
+ * @access private
+ */
+async function logoutUserController(req, res) {
+  const token = req.cookies.token;
+
+  if (token) {
+    await tokenBlacklistModel.create({ token });
+  }
+
+  res.clearCookie('token');
+
+  return res.status(200).json({
+    message: 'User logged out successfully',
+  });
+}
+
+export { registerUserController, loginUserController, logoutUserController };
