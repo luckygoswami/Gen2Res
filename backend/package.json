@@ -24,6 +24,7 @@
     "#routes/*": "./src/routes/*",
     "#models/*": "./src/models/*",
     "#controllers/*": "./src/controllers/*",
+    "#middlewares/*": "./src/middlewares/*",
     "#src/*": "./src/*"
   },
   "main": "server.js",

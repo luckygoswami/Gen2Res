@@ -1,8 +1,10 @@
 import {
+  getMeController,
   loginUserController,
   logoutUserController,
   registerUserController,
 } from '#controllers/auth.controller.js';
+import { authUser } from '#middlewares/auth.middleware.js';
 import { Router } from 'express';
 
 const authRouter = Router();
@@ -27,5 +29,13 @@ authRouter.post('/login', loginUserController);
  * @access private
  */
 authRouter.get('/logout', logoutUserController);
+
+//  craete a get-me route that will first check if the token is blacklisted or not and then return the user details
+/**
+ * @route GET /api/auth/get-me
+ * @description authenticate user from token in request and return user details in response
+ * @access private
+ */
+authRouter.get('/get-me', authUser, getMeController);
 
 export { authRouter };
