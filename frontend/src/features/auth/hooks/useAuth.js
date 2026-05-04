@@ -2,9 +2,9 @@ import { useContext } from 'react';
 import { AuthContext } from '@/features/auth/auth.context';
 import { login, logout, register } from '@/features/auth/services/auth.api';
 
-const { user, setUser, loading, setLoading } = useContext(AuthContext);
-
 export const useAuth = () => {
+  const { user, setUser, loading, setLoading } = useContext(AuthContext);
+
   const handleRegister = async ({ username, email, password }) => {
     setLoading(true);
 
