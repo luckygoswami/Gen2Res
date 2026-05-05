@@ -1,14 +1,13 @@
-import React from 'react';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
-import { useAuth } from '@/features/auth/hooks/useAuth';
+import React, { useState } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router';
+import { useAuth } from '@/features/auth';
 
 export function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { loading, handleRegister } = useAuth();
+  const { loading, handleRegister, user } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -21,6 +20,8 @@ export function Register() {
   };
 
   if (loading) return <main>Loading...</main>;
+
+  if (user) return <Navigate to={'/'} />;
 
   return (
     <main>

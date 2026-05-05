@@ -1,6 +1,5 @@
-import { useContext } from 'react';
-import { AuthContext } from '@/features/auth/auth.context';
-import { login, logout, register } from '@/features/auth/services/auth.api';
+import { useContext, useEffect } from 'react';
+import { AuthContext, login, logout, register, getMe } from '@/features/auth';
 
 export const useAuth = () => {
   const { user, setUser, loading, setLoading } = useContext(AuthContext);
@@ -40,6 +39,21 @@ export const useAuth = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const rehydrateUser = async () => {
+      try {
+        const data = await getMe();
+        setUser(data.user);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    rehydrateUser();
+  }, []);
 
   return { user, loading, handleRegister, handleLogin, handleLogout };
 };
