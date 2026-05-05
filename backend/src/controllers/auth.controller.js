@@ -1,6 +1,6 @@
-import userModel from '#models/user.model.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { userModel } from '#models/user.model.js';
 import { tokenBlacklistModel } from '#models/blacklist.model.js';
 import { JWT_SECRET } from '#config/variables.js';
 
