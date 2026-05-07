@@ -33,7 +33,7 @@ const interviewReportSchema = z.object({
     .describe(
       `Technical questions along with their intention of asking and how to frame the answer, that can be asked in an interview on the basis of provided resume and job described.`,
     ),
-  behaviouralQuestion: z
+  behaviouralQuestions: z
     .array(
       z.object({
         question: z

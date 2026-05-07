@@ -1,5 +1,6 @@
 import express from 'express';
 import { authRouter } from '#routes/auth.route.js';
+import { interviewRouter } from '#routes/interview.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { FRONTEND_URL } from '#config/variables.js';
@@ -16,6 +17,7 @@ app.use(
 );
 
 app.use('/api/auth', authRouter);
+app.use('/api/interview', interviewRouter);
 
 app.get('/', (req, res) => {
   res.send({ message: 'ok' });
