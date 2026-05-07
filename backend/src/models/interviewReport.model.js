@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 
 const technicalQuestionSchema = new Schema(
   {
@@ -76,6 +76,10 @@ const preparationPlanSchema = new Schema(
 );
 
 const interviewReportSchema = new Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+  },
   jobDescription: {
     type: String,
     required: [true, 'Job Description is required'],
