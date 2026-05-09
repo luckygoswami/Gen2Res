@@ -75,31 +75,38 @@ const preparationPlanSchema = new Schema(
   { _id: false },
 );
 
-const interviewReportSchema = new Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'users',
+const interviewReportSchema = new Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users',
+    },
+    resume: {
+      type: String,
+    },
+    selfDescription: {
+      type: String,
+    },
+    jobDescription: {
+      type: String,
+      required: [true, 'Job Description is required'],
+    },
+    title: {
+      type: String,
+      required: [true, 'Job Title is required'],
+    },
+    matchScore: {
+      type: Number,
+      min: 0,
+      max: 100,
+    },
+    technicalQuestions: [technicalQuestionSchema],
+    behaviouralQuestions: [behaviouralQuestionSchema],
+    skillGaps: [skillGapSchema],
+    preparationPlan: [preparationPlanSchema],
   },
-  jobDescription: {
-    type: String,
-    required: [true, 'Job Description is required'],
-  },
-  resume: {
-    type: String,
-  },
-  selfDescription: {
-    type: String,
-  },
-  matchScore: {
-    type: Number,
-    min: 0,
-    max: 100,
-  },
-  technicalQuestions: [technicalQuestionSchema],
-  behaviouralQuestions: [behaviouralQuestionSchema],
-  skillGaps: [skillGapSchema],
-  preparationPlan: [preparationPlanSchema],
-});
+  { timestamps: true },
+);
 
 export const interviewReportModel = model(
   'interviewReport',

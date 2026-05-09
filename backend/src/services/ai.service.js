@@ -7,6 +7,11 @@ const ai = new GoogleGenAI({
 });
 
 const interviewReportSchema = z.object({
+  title: z
+    .string()
+    .describe(
+      'The title of the job for which the interview report is generated.',
+    ),
   matchScore: z
     .number()
     .describe(

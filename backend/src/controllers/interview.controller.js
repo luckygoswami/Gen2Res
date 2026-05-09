@@ -36,7 +36,6 @@ export async function generateInterviewReportController(req, res) {
       data: interviewReport,
     });
   } catch (err) {
-    console.log(err);
     return res.status(501).json({
       message: 'Error while generating interview report',
     });
@@ -67,6 +66,35 @@ export const getInterviewReportByIdController = async (req, res) => {
       interviewReport,
     });
   } catch (err) {
-    console.log(err);
+    return res.status(500).json({
+      message: 'Internal server error',
+    });
+  }
+};
+
+/**
+ * @description Controller to get all interview reports of logged in user
+ * @access private
+ */
+export const getAllInterviewReportsController = async (req, res) => {
+  try {
+    const reports = await interviewReportModel
+      .find({ user: req.user.id }, 'title matchScore createdAt')
+      .sort({ createdAt: -1 });
+
+    if (!reports) {
+      return res.status(404).json({
+        message: 'No reports found!',
+      });
+    }
+
+    return res.status(200).json({
+      message: 'Successfully fetched reports',
+      interviewReports: reports,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: 'Internal server error',
+    });
   }
 };

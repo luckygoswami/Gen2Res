@@ -4,6 +4,7 @@ import { upload } from '#middlewares/file.middleware.js';
 import {
   generateInterviewReportController,
   getInterviewReportByIdController,
+  getAllInterviewReportsController,
 } from '#controllers/interview.controller.js';
 
 export const interviewRouter = Router();
@@ -30,3 +31,10 @@ interviewRouter.get(
   authUser,
   getInterviewReportByIdController,
 );
+
+/**
+ * @route /api/interview
+ * @description return all interview reports for a logged in user
+ * @access private
+ */
+interviewRouter.get('/', authUser, getAllInterviewReportsController);
