@@ -42,3 +42,31 @@ export async function generateInterviewReportController(req, res) {
     });
   }
 }
+
+/**
+ * @description Controller to fetch interview report by Interview ID
+ * @access private
+ */
+export const getInterviewReportByIdController = async (req, res) => {
+  const { interviewId } = req.params;
+
+  try {
+    const interviewReport = await interviewReportModel.findOne({
+      _id: interviewId,
+      user: req.user.id,
+    });
+
+    if (!interviewReport) {
+      return res.status(404).json({
+        message: 'Interview Report not found!',
+      });
+    }
+
+    return res.status(200).json({
+      message: 'Interview Report successfully fetched',
+      interviewReport,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
