@@ -1,10 +1,16 @@
 import '@/style.scss';
+import { AuthContextProvider } from '@/features/auth';
+import { InterviewContextProvider } from '@/features/interview';
+import { RouterProvider } from 'react-router';
+import { router } from '@/app.routes';
 
 function App() {
   return (
-    <>
-      <h2>Gen2Res</h2>
-    </>
+    <AuthContextProvider>
+      <InterviewContextProvider>
+        <RouterProvider router={router} />
+      </InterviewContextProvider>
+    </AuthContextProvider>
   );
 }
 
