@@ -30,3 +30,31 @@ export const generateInterviewReport = async ({
     console.log(err);
   }
 };
+
+/**
+ * @description service to fetch interview report based on interview Id
+ * @access private
+ */
+export const getInterviewReportById = async (interviewId) => {
+  try {
+    const { interviewReport } = (await api.get(`/report/${interviewId}`)).data;
+
+    return interviewReport;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+/**
+ * @description service to get all interview reports of a logged in user
+ * @access private
+ */
+export const getAllInterviewReports = async () => {
+  try {
+    const { interviewReports } = (await api.get('/')).data;
+
+    return interviewReports;
+  } catch (err) {
+    console.log(err);
+  }
+};
