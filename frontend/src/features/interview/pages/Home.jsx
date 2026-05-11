@@ -1,19 +1,22 @@
-import React from 'react';
-import { useState } from 'react';
-import { generateInterviewReport } from '@/features/interview';
+import React, { useState } from 'react';
+import { useInterview } from '@/features/interview';
+import { useNavigate } from 'react-router';
 
 export function Home() {
+  const { reports, generateReport } = useInterview();
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await generateInterviewReport({
+      const report = await generateReport({
         resumeFile,
         selfDescription,
         jobDescription,
       });
 
-      console.log(res);
+      navigate(`interview/${report._id}`);
     } catch (err) {
       console.log(err);
     }
@@ -59,6 +62,16 @@ export function Home() {
 
         <button type="submit">Upload</button>
       </form>
+
+      <section className="all-reports">
+        {reports.map((rep) => (
+          <div
+            key={rep._id}
+            onClick={() => navigate(`interview/${rep._id}`)}>
+            {rep.title}
+          </div>
+        ))}
+      </section>
     </main>
   );
 }

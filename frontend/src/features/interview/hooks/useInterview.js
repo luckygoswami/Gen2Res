@@ -24,28 +24,31 @@ export const useInterview = () => {
     jobDescription,
   }) => {
     setLoading(true);
+    let report = null;
 
     try {
-      const report = await generateInterviewReport({
+      report = await generateInterviewReport({
         resumeFile,
         selfDescription,
         jobDescription,
       });
-      setReport(report);
+
+      setReport(report.data);
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
     }
 
-    return report;
+    return report.data;
   };
 
   const getReportById = async (interviewId) => {
     setLoading(true);
+    let report = null;
 
     try {
-      const report = await getInterviewReportById(interviewId);
+      report = await getInterviewReportById(interviewId);
       setReport(report);
     } catch (err) {
       console.error(err);
@@ -58,9 +61,10 @@ export const useInterview = () => {
 
   const getReports = async () => {
     setLoading(true);
+    let reports = [];
 
     try {
-      const reports = await getAllInterviewReports();
+      reports = await getAllInterviewReports();
       setReports(reports);
     } catch (err) {
       console.error(err);
