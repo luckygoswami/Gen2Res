@@ -1,5 +1,8 @@
 import { PDFParse, VerbosityLevel } from 'pdf-parse';
-import { generateInterviewReport } from '#services/ai.service.js';
+import {
+  generateInterviewReport,
+  generateResumePdf,
+} from '#services/ai.service.js';
 import { interviewReportModel } from '#models/interviewReport.model.js';
 
 /**
@@ -95,6 +98,44 @@ export const getAllInterviewReportsController = async (req, res) => {
   } catch (err) {
     return res.status(500).json({
       message: 'Internal server error',
+    });
+  }
+};
+
+/**
+ * @description Controller to get tailored resume PDF
+ * @access private
+ */
+export const generateResumePdfController = async (req, res) => {
+  const { interviewReportId } = req.params;
+
+  const interviewReport =
+    await interviewReportModel.findById(interviewReportId);
+
+  if (!interviewReport) {
+    return res.status(404).json({
+      message: 'Interview Report not found.',
+    });
+  }
+
+  const { resume, selfDescription, jobDescription } = interviewReport;
+
+  try {
+    const pdfBuffer = await generateResumePdf({
+      resume,
+      selfDescription,
+      jobDescription,
+    });
+
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename=resume_${interviewReportId}.pdf`,
+    });
+
+    return res.send(pdfBuffer);
+  } catch (err) {
+    return res.status(500).json({
+      message: 'Unable to generate pdf',
     });
   }
 };

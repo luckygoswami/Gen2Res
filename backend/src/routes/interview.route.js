@@ -5,6 +5,7 @@ import {
   generateInterviewReportController,
   getInterviewReportByIdController,
   getAllInterviewReportsController,
+  generateResumePdfController,
 } from '#controllers/interview.controller.js';
 
 export const interviewRouter = Router();
@@ -38,3 +39,14 @@ interviewRouter.get(
  * @access private
  */
 interviewRouter.get('/', authUser, getAllInterviewReportsController);
+
+/**
+ * @route /api/interview/resume/pdf
+ * @description generate tailored resume according to the user's resume content, self-description and job description
+ * @access private
+ */
+interviewRouter.get(
+  '/resume/pdf/:interviewReportId',
+  authUser,
+  generateResumePdfController,
+);
