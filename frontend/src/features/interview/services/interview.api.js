@@ -58,3 +58,19 @@ export const getAllInterviewReports = async () => {
     console.log(err);
   }
 };
+
+/**
+ * @description service to download tailored resume on the basis of resume, self-description and job description
+ * @access private
+ */
+export const generateResumePdf = async (interviewId) => {
+  try {
+    const response = await api.get(`/resume/pdf/${interviewId}`, {
+      responseType: 'blob',
+    });
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};

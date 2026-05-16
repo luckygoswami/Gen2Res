@@ -190,6 +190,6 @@ export const generateResumePdf = async ({
 
     return pdfBuffer;
   } catch (err) {
-    throw new Error('Error while generating pdf buffer.');
+    throw new Error('Gemini is unable to generate pdf');
   }
 };

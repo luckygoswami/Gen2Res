@@ -4,6 +4,7 @@ import {
   generateInterviewReport,
   getAllInterviewReports,
   getInterviewReportById,
+  generateResumePdf,
 } from '@/features/interview';
 import { useParams } from 'react-router';
 
@@ -75,6 +76,33 @@ export const useInterview = () => {
     return reports;
   };
 
+  const getResumePdf = async ({ download = false }) => {
+    setLoading(true);
+
+    try {
+      const blob = await generateResumePdf(interviewId);
+      const url = URL.createObjectURL(blob);
+
+      if (!download) {
+        window.open(url, '_blank');
+      } else {
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `resume_${interviewId}.pdf`);
+        document.body.appendChild(link);
+        link.click();
+      }
+
+      setTimeout(() => {
+        URL.revokeObjectURL(url);
+      }, 10000);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (interviewId) {
       getReportById(interviewId);
@@ -90,5 +118,6 @@ export const useInterview = () => {
     generateReport,
     getReportById,
     getReports,
+    getResumePdf,
   };
 };

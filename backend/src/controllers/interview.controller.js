@@ -135,7 +135,7 @@ export const generateResumePdfController = async (req, res) => {
     return res.send(pdfBuffer);
   } catch (err) {
     return res.status(500).json({
-      message: 'Unable to generate pdf',
+      message: err.message,
     });
   }
 };
