@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+@import 'tailwindcss';
+
+@theme {
+  /* ========= COLORS ========= */
+
+  --color-inverse-surface: #2d3133;
+  --color-primary-container: #0052ff;
+  --color-on-primary-fixed: #001452;
+  --color-on-error: #ffffff;
+  --color-surface-container-high: #e6e8ea;
+  --color-on-primary-container: #dfe3ff;
+  --color-primary-fixed-dim: #b7c4ff;
+  --color-surface-container-highest: #e0e3e5;
+  --color-outline: #737688;
+  --color-surface: #f7f9fb;
+  --color-tertiary-container: #57677e;
+  --color-on-background: #191c1e;
+  --color-surface-container-low: #f2f4f6;
+  --color-error: #ba1a1a;
+  --color-tertiary-fixed-dim: #b7c8e1;
+  --color-surface-variant: #e0e3e5;
+  --color-surface-container: #eceef0;
+  --color-on-tertiary-fixed-variant: #38485d;
+  --color-error-container: #ffdad6;
+  --color-secondary-container: #dae2fd;
+  --color-on-surface: #191c1e;
+  --color-tertiary-fixed: #d3e4fe;
+  --color-on-primary: #ffffff;
+  --color-background: #f7f9fb;
+  --color-on-secondary: #ffffff;
+  --color-surface-dim: #d8dadc;
+  --color-primary: #003ec7;
+  --color-on-tertiary: #ffffff;
+  --color-on-secondary-fixed: #131b2e;
+  --color-secondary-fixed: #dae2fd;
+  --color-outline-variant: #c3c5d9;
+  --color-surface-container-lowest: #ffffff;
+  --color-tertiary: #3f4f65;
+  --color-inverse-on-surface: #eff1f3;
+  --color-surface-bright: #f7f9fb;
+  --color-on-surface-variant: #434656;
+  --color-on-tertiary-container: #d6e6ff;
+  --color-on-secondary-container: #5c647a;
+  --color-on-error-container: #93000a;
+  --color-primary-fixed: #dde1ff;
+  --color-on-tertiary-fixed: #0b1c30;
+  --color-secondary-fixed-dim: #bec6e0;
+  --color-inverse-primary: #b7c4ff;
+  --color-secondary: #565e74;
+  --color-on-secondary-fixed-variant: #3f465c;
+  --color-surface-tint: #004ced;
+  --color-on-primary-fixed-variant: #0038b6;
+
+  /* ========= BORDER RADIUS ========= */
+
+  --radius: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+
+  /* ========= SPACING ========= */
+
+  --spacing-stack_sm: 8px;
+  --spacing-margin_desktop: 32px;
+  --spacing-gutter: 24px;
+  --spacing-margin_mobile: 16px;
+  --spacing-stack_lg: 32px;
+  --spacing-sidebar_collapsed: 72px;
+  --spacing-stack_md: 16px;
+  --spacing-sidebar_width: 260px;
+
+  /* ========= FONT FAMILIES ========= */
+
+  --font-headline-md: 'Inter', sans-serif;
+  --font-body-md: 'Inter', sans-serif;
+  --font-label-sm: 'Inter', sans-serif;
+  --font-headline-sm: 'Inter', sans-serif;
+  --font-label-md: 'Inter', sans-serif;
+  --font-headline-lg-mobile: 'Inter', sans-serif;
+  --font-display-lg: 'Inter', sans-serif;
+  --font-body-lg: 'Inter', sans-serif;
+
+  /* ========= FONT SIZES ========= */
+
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--letter-spacing: -0.01em;
+  --text-headline-md--font-weight: 600;
+
+  --text-body-md: 14px;
+  --text-body-md--line-height: 20px;
+  --text-body-md--font-weight: 400;
+
+  --text-label-sm: 11px;
+  --text-label-sm--line-height: 14px;
+  --text-label-sm--font-weight: 600;
+
+  --text-headline-sm: 20px;
+  --text-headline-sm--line-height: 28px;
+  --text-headline-sm--font-weight: 600;
+
+  --text-label-md: 12px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.02em;
+  --text-label-md--font-weight: 500;
+
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 36px;
+  --text-headline-lg-mobile--font-weight: 700;
+
+  --text-display-lg: 36px;
+  --text-display-lg--line-height: 44px;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 700;
+
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 24px;
+  --text-body-lg--font-weight: 400;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    min-height: max(884px, 100dvh);
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
+
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  }
+}
