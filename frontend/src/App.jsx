@@ -1,4 +1,3 @@
-import '@/style.scss';
 import { AuthContextProvider } from '@/features/auth';
 import { InterviewContextProvider } from '@/features/interview';
 import { RouterProvider } from 'react-router';
