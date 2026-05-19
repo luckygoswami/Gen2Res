@@ -6,11 +6,10 @@ export const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
   {
-    path: '/',
-    element: <Protected><Home /></Protected>,
+    element: <Protected />,
+    children: [
+      { path: '/', element: <Home /> },
+      { path: '/interview/:interviewId', element: <Interview /> },
+    ],
   },
-  {
-    path: '/interview/:interviewId',
-    element: <Protected><Interview /></Protected>
-  }
 ]);

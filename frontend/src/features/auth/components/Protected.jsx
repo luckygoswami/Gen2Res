@@ -1,12 +1,12 @@
 import { useAuth } from '@/features/auth';
-import { Navigate } from 'react-router';
+import { Navigate, Outlet } from 'react-router';
 
-export function Protected({ children }) {
+export function Protected() {
   const { loading, user } = useAuth();
 
   if (loading) return <main>Loading...</main>;
 
   if (!user) return <Navigate to={'/login'} />;
 
-  return children;
+  return <Outlet />;
 }
