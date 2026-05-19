@@ -37,7 +37,7 @@ export function Login() {
         {/* Social Login */}
         <div className="space-y-stack_md">
           <button className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-outline-variant rounded-lg bg-surface hover:bg-surface-container transition-colors duration-200">
-            <i class="fa-brands fa-google size-4.5"></i>
+            <i className="fa-brands fa-google size-4.5"></i>
             <span className="font-label-md text-label-md text-on-surface">
               Continue with Google
             </span>
@@ -71,7 +71,7 @@ export function Login() {
               <input
                 className="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md"
                 id="email"
-                placeholder="mail@address.com"
+                placeholder="name@company.com"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -110,7 +110,7 @@ export function Login() {
           <button
             className="w-full py-3 bg-primary text-on-primary rounded-lg font-headline-sm text-headline-sm shadow-md hover:bg-primary-container transition-all active:opacity-80"
             type="submit">
-            Log In
+            Login
           </button>
         </form>
         {/* Footer Sign Up Link */}
