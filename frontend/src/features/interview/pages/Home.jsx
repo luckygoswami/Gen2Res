@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useInterview } from '@/features/interview';
 import { useNavigate } from 'react-router';
 import { TopNavbar, Sidebar, BottomNavbar } from '@/components';
-import { useRef } from 'react';
 
 export function Home() {
   const [resumeFile, setResumeFile] = useState(null);

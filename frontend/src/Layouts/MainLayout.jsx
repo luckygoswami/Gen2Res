@@ -1,8 +1,8 @@
-import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
+import React from 'react';
+import { Footer, Header } from '@/components';
 import { Outlet } from 'react-router';
 
-export function Layout() {
+export function MainLayout() {
   return (
     <>
       <Header />
