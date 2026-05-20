@@ -1,10 +1,16 @@
 import { createBrowserRouter } from 'react-router';
 import { Login, Protected, Register } from '@/features/auth';
 import { Home, Interview } from '@/features/interview';
+import { Layout } from '@/components';
 
 export const router = createBrowserRouter([
-  { path: '/login', element: <Login /> },
-  { path: '/register', element: <Register /> },
+  {
+    element: <Layout />,
+    children: [
+      { path: '/login', element: <Login /> },
+      { path: '/register', element: <Register /> },
+    ],
+  },
   {
     element: <Protected />,
     children: [
