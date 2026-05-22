@@ -4,3 +4,4 @@ export * from './pages/Reports';
 export * from './services/interview.api';
 export * from './interview.context';
 export * from './hooks/useInterview';
+export * from './components';
