@@ -1,8 +1,9 @@
 import React from 'react';
 
-export function TopNavbar() {
+export function TopNavbar({ className }) {
   return (
-    <nav className="fixed top-0 right-0 left-0 md:left-sidebar_width h-16 bg-surface-container-lowest border-b border-outline-variant/30 flex justify-between items-center px-margin_mobile md:px-margin_desktop z-30">
+    <nav
+      className={`${className} bg-surface-container-lowest border-b border-outline-variant/30 flex justify-between items-center px-margin_mobile md:px-margin_desktop z-30`}>
       <div className="flex-1 max-w-xl">
         <div className="relative group">
           <span className="absolute inset-y-0 left-3 flex items-center text-outline group-focus-within:text-primary transition-colors">

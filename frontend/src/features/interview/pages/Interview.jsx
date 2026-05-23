@@ -14,7 +14,7 @@ export function Interview() {
   if (loading || !report) return <main>Loading...</main>;
 
   return (
-    <main className="lg:ml-sidebar_width mt-16 p-margin_mobile lg:p-margin_desktop min-h-screen pb-24 lg:pb-margin_desktop">
+    <main className="p-4 lg:p-12 overflow-auto">
       <div className="max-w-7xl mx-auto space-y-stack_md lg:space-y-stack_lg">
         {/* Breadcrumb & Header Section */}
         <div className="lg:flex lg:justify-between lg:items-end">

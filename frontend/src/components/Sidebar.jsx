@@ -2,12 +2,13 @@ import { useInterview } from '@/features/interview';
 import React from 'react';
 import { Link, useLocation } from 'react-router';
 
-export function Sidebar() {
+export function Sidebar({ className }) {
   const { reports } = useInterview();
   const { pathname } = useLocation();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-sidebar_width bg-surface-container-low/80 dark:bg-surface-dim/20 border-r border-outline-variant/30 backdrop-blur-md flex-col py-stack_lg gap-stack_md z-40 md:flex hidden">
+    <aside
+      className={`${className} bg-surface-container-low/80 dark:bg-surface-dim/20 border-r border-outline-variant/30 backdrop-blur-md flex-col py-stack_lg gap-stack_md z-40 md:flex hidden`}>
       <div className="px-6 mb-stack_lg">
         <h1 className="text-headline-sm font-headline-sm font-semibold text-on-surface">
           Gen2Res AI

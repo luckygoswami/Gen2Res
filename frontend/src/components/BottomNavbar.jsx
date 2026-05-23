@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export function BottomNavbar() {
+export function BottomNavbar({ className }) {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-lowest border-t border-outline-variant/30 flex justify-around items-center py-2 z-50 shadow-lg">
+    <nav
+      className={`${className} md:hidden bg-surface-container-lowest border-t border-outline-variant/30 flex justify-around items-center py-2 z-50 shadow-lg`}>
       <Link
         className="flex flex-col items-center gap-1 text-primary"
         to="/">
