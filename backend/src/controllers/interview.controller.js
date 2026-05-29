@@ -80,10 +80,23 @@ export const getInterviewReportByIdController = async (req, res) => {
  * @access private
  */
 export const getAllInterviewReportsController = async (req, res) => {
+  const page = Math.max(req.query.page || 1, 1);
+
+  const limit = Math.min(req.query.limit || 20, 100);
+
+  const skip = (page - 1) * limit;
+
   try {
-    const reports = await interviewReportModel
-      .find({ user: req.user.id }, 'title matchScore createdAt')
-      .sort({ createdAt: -1 });
+    const [reports, total] = await Promise.all([
+      interviewReportModel
+        .find({ user: req.user.id }, 'title matchScore createdAt')
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .lean(),
+
+      interviewReportModel.countDocuments(),
+    ]);
 
     if (!reports) {
       return res.status(404).json({
@@ -94,6 +107,12 @@ export const getAllInterviewReportsController = async (req, res) => {
     return res.status(200).json({
       message: 'Successfully fetched reports',
       interviewReports: reports,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
     });
   } catch (err) {
     return res.status(500).json({

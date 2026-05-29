@@ -34,7 +34,7 @@ interviewRouter.get(
 );
 
 /**
- * @route /api/interview
+ * @route /api/interview?page={pageNumber}&limit={reportsPerPage}
  * @description return all interview reports for a logged in user
  * @access private
  */
