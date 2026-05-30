@@ -60,18 +60,29 @@ export const useInterview = () => {
     return report;
   };
 
-  const getReports = async () => {
+  const getReports = async ({
+    page = 1,
+    limit = 5,
+    pagination = false,
+  } = {}) => {
     setLoading(true);
-    let reports = [];
+    var reports = [];
 
     try {
-      reports = await getAllInterviewReports();
+      var { interviewReports: reports, pagination } =
+        await getAllInterviewReports({ page, limit });
       setReports(reports);
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
     }
+
+    if (pagination)
+      return {
+        reports,
+        pagination,
+      };
 
     return reports;
   };

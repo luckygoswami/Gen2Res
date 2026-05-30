@@ -49,11 +49,16 @@ export const getInterviewReportById = async (interviewId) => {
  * @description service to get all interview reports of a logged in user
  * @access private
  */
-export const getAllInterviewReports = async () => {
+export const getAllInterviewReports = async ({ page, limit }) => {
   try {
-    const { interviewReports } = (await api.get('/')).data;
+    const { data } = await api.get('/', {
+      params: {
+        page,
+        limit,
+      },
+    });
 
-    return interviewReports;
+    return data;
   } catch (err) {
     console.log(err);
   }
