@@ -6,6 +6,7 @@ import {
   getInterviewReportByIdController,
   getAllInterviewReportsController,
   generateResumePdfController,
+  deleteInterviewReportController,
 } from '#controllers/interview.controller.js';
 
 export const interviewRouter = Router();
@@ -49,4 +50,15 @@ interviewRouter.get(
   '/resume/pdf/:interviewReportId',
   authUser,
   generateResumePdfController,
+);
+
+/**
+ * @route /api/interview/report/:interviewId
+ * @description delete interview report by Interview ID
+ * @access
+ */
+interviewRouter.delete(
+  '/report/:interviewId',
+  authUser,
+  deleteInterviewReportController,
 );

@@ -158,3 +158,33 @@ export const generateResumePdfController = async (req, res) => {
     });
   }
 };
+
+/**
+ * @description Controller to validate and delete the Interview Report doc from db
+ * @access private
+ */
+export const deleteInterviewReportController = async (req, res) => {
+  const { interviewId } = req.params;
+
+  try {
+    const interviewReport = await interviewReportModel.findOne({
+      _id: interviewId,
+      user: req.user.id,
+    });
+
+    if (!interviewReport)
+      return res.status(400).json({
+        message: 'Interview Report not found!',
+      });
+
+    await interviewReportModel.deleteOne({ _id: interviewId });
+
+    return res.status(200).json({
+      message: 'Interview Report deleted successfully.',
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: 'Internal server error.',
+    });
+  }
+};
