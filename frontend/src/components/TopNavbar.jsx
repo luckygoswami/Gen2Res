@@ -20,22 +20,38 @@ export function TopNavbar({ className }) {
           />
         </div>
       </div>
-      <div className="flex items-center gap-stack_md ml-gutter">
-        <div className="flex items-center gap-3 pl-2 cursor-pointer group">
-          <div className="text-right hidden sm:block">
-            <p className="text-label-md font-label-md text-on-surface">
+
+      <div className="relative group">
+        <div className="flex items-center gap-3 cursor-pointer">
+          <div className="text-right">
+            <p className="font-label-md text-label-md font-bold group-hover:text-primary transition-colors">
               John Doe
             </p>
-            <p className="text-label-sm font-label-sm text-outline">
-              Web Developer
-            </p>
+            <p className="text-[10px] text-secondary">Web Developer</p>
           </div>
           <img
-            alt="Recruiter Profile"
-            className="w-10 h-10 rounded-full border-2 border-primary/20 group-hover:border-primary transition-all"
-            data-alt="A professional headshot of a recruitment specialist with a friendly, confident expression. The person is dressed in modern business casual attire against a clean, softly blurred office background with cool blue and white tones. The lighting is bright and even, reinforcing a corporate yet approachable minimalist aesthetic."
+            alt="Recruiter profile"
+            className="w-10 h-10 rounded-full object-cover border-2 border-surface-container-highest"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV9xQ1vVZd9WwdInxWJUroHcljihev_gFng4rN3NbZD7o7G0xGK4QDPjdl0kYKh6V0BZPLOEYtBVaQRjm_uLU_X4P-BQw6hKbq8JxIlHRgRQQVzPzWeUbvznxlp4n5gYTpG0zZHAzirDEN2X8DstnucVGUtlJjGBS8ylp-TkSqDtCHaxqbs5Ce0lgXJTBP_BcO5mSWGsc6ATEMDr5Hk1Kjo3LtOWc-GjNM_K8lzEUtdEUg005447MMgcgj4E5xGeP_f6cwt7BwN0Ad"
           />
+        </div>
+        <div className="absolute right-0 mt-2 w-48 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 overflow-hidden">
+          <div className="px-4 py-3 border-b border-outline-variant/30">
+            <p className="font-label-md text-label-md font-bold text-on-surface">
+              John Doe
+            </p>
+            <p className="text-[10px] text-secondary truncate">
+              doe.john@gen2res.ai
+            </p>
+          </div>
+          <div className="p-1">
+            <button className="w-full flex items-center gap-3 px-3 py-2 text-label-md text-error hover:bg-error/5 rounded-lg transition-colors font-semibold">
+              <span className="material-symbols-outlined text-lg">
+                exit_to_app
+              </span>
+              Logout
+            </button>
+          </div>
         </div>
       </div>
     </nav>
