@@ -79,3 +79,17 @@ export const generateResumePdf = async (interviewId) => {
     console.log(err);
   }
 };
+
+/**
+ * @description service to delete the Interview report by ID from db
+ * @access private
+ */
+export const deleteInterviewReportById = async (reportId) => {
+  try {
+    const response = await api.delete(`/report/${reportId}`);
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};

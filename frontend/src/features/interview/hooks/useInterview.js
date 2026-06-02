@@ -5,6 +5,7 @@ import {
   getAllInterviewReports,
   getInterviewReportById,
   generateResumePdf,
+  deleteInterviewReportById,
 } from '@/features/interview';
 import { useParams } from 'react-router';
 
@@ -114,6 +115,19 @@ export const useInterview = () => {
     }
   };
 
+  const deleteReport = async (interviewId) => {
+    setLoading(true);
+    try {
+      await deleteInterviewReportById(interviewId);
+
+      setReports((prev) => prev.filter((rep) => rep._id !== interviewId));
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (interviewId) {
       getReportById(interviewId);
@@ -130,5 +144,6 @@ export const useInterview = () => {
     getReportById,
     getReports,
     getResumePdf,
+    deleteReport,
   };
 };

@@ -7,8 +7,9 @@ import { useEffect } from 'react';
 export function Reports() {
   const [reports, setReports] = useState([]);
   const [paginationData, setPaginationData] = useState({});
-  const { loading, getReports } = useInterview();
+  const { loading, getReports, deleteReport } = useInterview();
   const [currentPage, setCurrentPage] = useState(1);
+  const [actionMenu, setActionMenu] = useState(null);
 
   const navigate = useNavigate();
 
@@ -26,6 +27,24 @@ export function Reports() {
       .join(':');
 
     return `${formattedDate}, ${formattedTime}`;
+  };
+
+  const handleActionMenu = (reportId) => {
+    if (actionMenu === reportId) {
+      setActionMenu(null);
+    } else {
+      setActionMenu(reportId);
+    }
+  };
+
+  const handleDelete = async (reportId) => {
+    try {
+      await deleteReport(reportId);
+
+      setReports((prev) => prev.filter((rep) => rep._id !== reportId));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -96,7 +115,7 @@ export function Reports() {
                 <tr
                   key={rep._id}
                   onClick={() => navigate(rep._id)}
-                  className="group hover:bg-surface-container transition-colors cursor-pointer">
+                  className="group hover:bg-surface-container transition-colors">
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded bg-primary-container/10 flex items-center justify-center text-primary">
@@ -128,14 +147,36 @@ export function Reports() {
                   <td className="px-6 py-5 font-body-md text-body-md text-secondary">
                     {formatDateTime(rep.createdAt)}
                   </td>
-                  <td className="px-6 py-5 text-right">
-                    <button className="text-outline hover:text-primary transition-colors">
+                  <td className="px-6 py-5 text-right relative">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleActionMenu(rep._id);
+                      }}
+                      className="text-outline hover:text-primary transition-colors300 p-1">
                       <span
                         className="material-symbols-outlined"
                         data-icon="more_vert">
                         more_vert
                       </span>
                     </button>
+                    <div
+                      hidden={actionMenu !== rep._id}
+                      className="absolute bottom-1 right-10 rounded-sm border border-gray-500">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(rep._id);
+                        }}
+                        className="flex items-center gap-1 text-gray-500 hover:text-white text-sm font-semibold text-left px-2 py-1 rounded-sm hover:bg-red-500">
+                        <span
+                          className="material-symbols-outlined text-[18px]!"
+                          data-icon="more_vert">
+                          delete
+                        </span>
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
