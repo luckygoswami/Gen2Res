@@ -9,7 +9,6 @@ export function Reports() {
   const [paginationData, setPaginationData] = useState({});
   const { loading, getReports, deleteReport } = useInterview();
   const [currentPage, setCurrentPage] = useState(1);
-  const [actionMenu, setActionMenu] = useState(null);
 
   const navigate = useNavigate();
 
@@ -27,14 +26,6 @@ export function Reports() {
       .join(':');
 
     return `${formattedDate}, ${formattedTime}`;
-  };
-
-  const handleActionMenu = (reportId) => {
-    if (actionMenu === reportId) {
-      setActionMenu(null);
-    } else {
-      setActionMenu(reportId);
-    }
   };
 
   const handleDelete = async (reportId) => {
@@ -148,34 +139,27 @@ export function Reports() {
                     {formatDateTime(rep.createdAt)}
                   </td>
                   <td className="px-6 py-5 text-right relative">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleActionMenu(rep._id);
-                      }}
-                      className="text-outline hover:text-primary transition-colors300 p-1">
+                    <div className="text-outline hover:text-primary transition-color group/action">
                       <span
                         className="material-symbols-outlined"
                         data-icon="more_vert">
                         more_vert
                       </span>
-                    </button>
-                    <div
-                      hidden={actionMenu !== rep._id}
-                      className="absolute bottom-1 right-10 rounded-sm border border-gray-500">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDelete(rep._id);
-                        }}
-                        className="flex items-center gap-1 text-gray-500 hover:text-white text-sm font-semibold text-left px-2 py-1 rounded-sm hover:bg-red-500">
-                        <span
-                          className="material-symbols-outlined text-[18px]!"
-                          data-icon="more_vert">
-                          delete
-                        </span>
-                        Delete
-                      </button>
+                      <div className="absolute right-10 top-1/2 -translate-y-1/2 mt-2 w-32 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-xl opacity-0 invisible group-hover/action:opacity-100 group-hover/action:visible transition-all z-50 overflow-hidden">
+                        <div className="p-1">
+                          <button
+                            className="w-full flex items-center gap-3 px-3 py-2 text-label-md text-error hover:bg-error/5 rounded-lg transition-colors font-semibold"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDelete(rep._id);
+                            }}>
+                            <span className="material-symbols-outlined">
+                              delete
+                            </span>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </td>
                 </tr>
