@@ -62,17 +62,32 @@ export function Sidebar({ className }) {
           ))}
         </div>
       </nav>
-      <div className="px-4 mt-auto space-y-1">
-        <Link
-          className="flex items-center gap-3 px-3 py-2.5 text-secondary hover:bg-surface-container-highest/50 transition-colors"
-          href="#">
-          <span
-            className="material-symbols-outlined"
-            data-icon="settings">
-            settings
+      <div className="relative group px-4 mt-auto">
+        <a className="text-secondary flex items-center px-3 py-2.5 hover:bg-surface-container-highest transition-all opacity-80 cursor-pointer">
+          <span className="material-symbols-outlined mr-3">palette</span>
+          <span className="font-label-md text-label-md">Theme</span>
+          <span className="material-symbols-outlined ml-auto text-sm">
+            chevron_right
           </span>
-          <span className="text-label-md font-label-md">Settings</span>
-        </Link>
+        </a>
+        <div className="absolute left-full bottom-0 ml-2 w-32 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 p-1">
+          <button className="w-full text-left px-4 py-2 text-label-md hover:bg-surface-container rounded-lg flex items-center gap-2">
+            <span className="material-symbols-outlined text-sm">
+              light_mode
+            </span>
+            Light
+          </button>
+          <button className="w-full text-left px-4 py-2 text-label-md hover:bg-surface-container rounded-lg flex items-center gap-2">
+            <span className="material-symbols-outlined text-sm">dark_mode</span>
+            Dark
+          </button>
+          <button className="w-full text-left px-4 py-2 text-label-md hover:bg-surface-container rounded-lg flex items-center gap-2">
+            <span className="material-symbols-outlined text-sm">
+              desktop_windows
+            </span>
+            System
+          </button>
+        </div>
       </div>
     </aside>
   );
