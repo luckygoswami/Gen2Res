@@ -87,7 +87,8 @@ export function Login() {
               </label>
               <a
                 className="font-label-md text-label-md text-primary hover:underline"
-                href="#">
+                href="#"
+                tabIndex={-1}>
                 Forgot password?
               </a>
             </div>
