@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 
 export function BottomNavbar({ className }) {
+  const { pathname } = useLocation();
+
   return (
     <nav
       className={`${className} md:hidden bg-surface-container-lowest border-t border-outline-variant/30 flex justify-around items-center py-2 z-50 shadow-lg`}>
       <Link
-        className="flex flex-col items-center gap-1 text-primary"
+        className={`flex flex-col items-center gap-1 ${pathname === '/' ? 'text-primary' : 'text-secondary'}`}
         to="/">
         <span
           className="material-symbols-outlined"
@@ -15,28 +17,18 @@ export function BottomNavbar({ className }) {
         </span>
         <span className="text-[10px] font-medium">New Report</span>
       </Link>
-      {/* <Link
-        className="flex flex-col items-center gap-1 text-secondary"
-        to="#">
+      <Link
+        className={`flex flex-col items-center gap-1 ${pathname.includes('/reports') ? 'text-primary' : 'text-secondary'}`}
+        to="/reports">
         <span
           className="material-symbols-outlined"
           data-icon="analytics">
           analytics
         </span>
-        <span className="text-[10px] font-medium">Analytics</span>
-      </Link> */}
-      <Link
-        className="flex flex-col items-center gap-1 text-secondary"
-        to="#">
-        <span
-          className="material-symbols-outlined"
-          data-icon="history">
-          history
-        </span>
-        <span className="text-[10px] font-medium">History</span>
+        <span className="text-[10px] font-medium">Reports</span>
       </Link>
       <Link
-        className="flex flex-col items-center gap-1 text-secondary"
+        className={`flex flex-col items-center gap-1 ${pathname.includes('/settings') ? 'text-primary' : 'text-secondary'}`}
         to="#">
         <span
           className="material-symbols-outlined"

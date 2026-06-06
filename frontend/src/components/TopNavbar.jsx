@@ -24,7 +24,7 @@ export function TopNavbar({ className }) {
         </div>
       </div>
 
-      <div className="relative group">
+      <div className="relative group ml-5">
         <div className="flex items-center gap-3 cursor-pointer">
           <div className="text-right">
             <p className="font-label-md text-label-md font-bold group-hover:text-primary transition-colors">
