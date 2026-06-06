@@ -1,6 +1,9 @@
+import { useAuth } from '@/features/auth';
 import React from 'react';
 
 export function TopNavbar({ className }) {
+  const { handleLogout } = useAuth();
+
   return (
     <nav
       className={`${className} bg-surface-container-lowest border-b border-outline-variant/30 flex justify-between items-center px-margin_mobile md:px-margin_desktop z-30`}>
@@ -45,7 +48,9 @@ export function TopNavbar({ className }) {
             </p>
           </div>
           <div className="p-1">
-            <button className="w-full flex items-center gap-3 px-3 py-2 text-label-md text-error hover:bg-error/5 rounded-lg transition-colors font-semibold">
+            <button
+              className="w-full flex items-center gap-3 px-3 py-2 text-label-md text-error hover:bg-error/5 rounded-lg transition-colors font-semibold"
+              onClick={handleLogout}>
               <span className="material-symbols-outlined text-lg">
                 exit_to_app
               </span>
