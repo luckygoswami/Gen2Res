@@ -29,7 +29,7 @@ export function BottomNavbar({ className }) {
       </Link>
       <Link
         className={`flex flex-col items-center gap-1 ${pathname.includes('/settings') ? 'text-primary' : 'text-secondary'}`}
-        to="#">
+        to="/settings">
         <span
           className="material-symbols-outlined"
           data-icon="settings">

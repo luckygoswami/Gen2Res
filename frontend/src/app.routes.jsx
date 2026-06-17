@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router';
 import { Login, Protected, Register } from '@/features/auth';
 import { Home, Interview, Reports } from '@/features/interview';
 import { AppLayout, MainLayout } from '@/Layouts';
+import { Settings } from '@/features/settings';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
           { path: '/', element: <Home /> },
           { path: '/reports/:interviewId', element: <Interview /> },
           { path: '/reports', element: <Reports /> },
+          { path: '/settings', element: <Settings /> },
         ],
       },
     ],
