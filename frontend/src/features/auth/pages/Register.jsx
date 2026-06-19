@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router';
-import { useAuth } from '@/features/auth';
+import { SocialLogin, useAuth } from '@/features/auth';
 
 export function Register() {
   const [username, setUsername] = useState('');
@@ -41,14 +41,7 @@ export function Register() {
           </p>
         </div>
         {/* Social Sign Up */}
-        <div className="space-y-stack_md">
-          <button className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-outline-variant rounded-lg bg-surface hover:bg-surface-container transition-colors duration-200">
-            <i className="fa-brands fa-google size-4.5"></i>
-            <span className="font-label-md text-label-md text-on-surface">
-              Sign up with Google
-            </span>
-          </button>
-        </div>
+        <SocialLogin />
         {/* Divider */}
         <div className="flex items-center gap-stack_md my-stack_lg">
           <div className="grow h-px bg-outline-variant"></div>
