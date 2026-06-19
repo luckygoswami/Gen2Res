@@ -51,3 +51,13 @@ export const getMe = async () => {
     console.log(err);
   }
 };
+
+export const socialLogin = async (token) => {
+  try {
+    const response = await api.post('/google', { token });
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
