@@ -15,7 +15,23 @@ const userSchema = new Schema({
 
   password: {
     type: String,
-    required: true,
+  },
+
+  providers: {
+    local: {
+      type: Boolean,
+      default: true,
+    },
+    google: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  googleId: {
+    type: String,
+    unique: true,
+    sparse: true,
   },
 });
 

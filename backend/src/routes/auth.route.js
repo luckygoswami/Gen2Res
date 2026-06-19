@@ -3,6 +3,7 @@ import {
   loginUserController,
   logoutUserController,
   registerUserController,
+  socialLoginController,
 } from '#controllers/auth.controller.js';
 import { authUser } from '#middlewares/auth.middleware.js';
 import { Router } from 'express';
@@ -37,5 +38,12 @@ authRouter.get('/logout', logoutUserController);
  * @access private
  */
 authRouter.get('/get-me', authUser, getMeController);
+
+/**
+ * @route POST /api/auth/google
+ * @description authenticate user with social login credentials and return user details in reponse
+ * @access public
+ */
+authRouter.post('/google', socialLoginController);
 
 export { authRouter };

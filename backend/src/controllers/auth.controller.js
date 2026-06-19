@@ -2,7 +2,10 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { userModel } from '#models/user.model.js';
 import { tokenBlacklistModel } from '#models/blacklist.model.js';
-import { JWT_SECRET } from '#config/variables.js';
+import { GOOGLE_CLIENT_ID, JWT_SECRET } from '#config/variables.js';
+import { OAuth2Client } from 'google-auth-library';
+
+const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 /**
  * @name registerUserController
@@ -136,9 +139,95 @@ async function getMeController(req, res) {
   });
 }
 
+/**
+ * @name socialLoginController
+ * @description register and login the user with given Google account
+ * @access public
+ */
+async function socialLoginController(req, res) {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.status(401).json({
+      message: 'Token not found',
+    });
+  }
+
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+    });
+
+    const payload = ticket.getPayload();
+    const { name, email, sub } = payload;
+
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+      const newUser = await userModel.create({
+        username: `${name.replaceAll(' ', '')}${email.split('@')[0]}_${sub.slice(0, 5)}`,
+        email,
+        password: undefined,
+        providers: {
+          local: false,
+          google: true,
+        },
+        googleId: sub,
+      });
+
+      console.log(newUser);
+      // Store JWT in cookie (consider httpOnly + secure in production)
+      const jwtToken = jwt.sign(
+        { id: newUser._id, username: newUser.username },
+        JWT_SECRET,
+        {
+          expiresIn: '1d',
+        },
+      );
+
+      res.cookie('token', jwtToken);
+
+      return res.status(200).json({
+        message: 'User logged in successfully',
+        user: {
+          id: newUser._id,
+          username: newUser.username,
+          email: newUser.email,
+        },
+      });
+    }
+
+    // Store JWT in cookie (consider httpOnly + secure in production)
+    const jwtToken = jwt.sign(
+      { id: user._id, username: user.username },
+      JWT_SECRET,
+      {
+        expiresIn: '1d',
+      },
+    );
+
+    res.cookie('token', jwtToken);
+
+    return res.status(200).json({
+      message: 'User logged in successfully',
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(401).json({
+      message: 'Unable to sign in via Google',
+    });
+  }
+}
+
 export {
   registerUserController,
   loginUserController,
   logoutUserController,
   getMeController,
+  socialLoginController,
 };
